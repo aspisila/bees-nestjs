@@ -1,10 +1,23 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { BeeModule } from './bee/bee.module';
+import { RabbitMQModule } from './rabbitmq/rabbitmq.module';
+import { config } from 'dotenv';
+import { MessageModule } from './message/message.module';
+import { MongoModule } from './mongo/mongo.module';
+import { MongooseConfigService } from './mongo/mongoose.config.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    BeeModule,
+    MessageModule,
+    MongoModule.register({
+      connections: [{ configuration: MongooseConfigService }],
+    }),
+    RabbitMQModule,
+  ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    config();
+  }
+}
