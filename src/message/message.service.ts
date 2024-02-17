@@ -5,7 +5,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Bee } from '../database/schemas/bee.schema';
 import { Model } from 'mongoose';
 import { Message } from '../database/schemas/message.schema';
-// import { RabbitConsumer } from '../rabbitmq/rabbbit-consumer.decorator';
 
 @Injectable()
 export class MessageService {

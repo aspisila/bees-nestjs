@@ -1,0 +1,32 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "../",
+  "testEnvironment": "node",
+  "testRegex": ".spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "testTimeout": 10000,
+  "coverageDirectory": "./coverage",
+  "coverageReporters": ["html-spa", "lcovonly", "text-summary"],
+  "collectCoverageFrom": [
+    "src/**/*.ts",
+    "!src/database/**",
+    "!src/**/*.dto.ts"
+  ],
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "<rootDir>/src/libs/",
+    ".module.ts$",
+    ".spec.ts$",
+    ".mock.ts$",
+    ".dto.ts$",
+    "main.ts$",
+    ".view.ts$"
+  ],
+  "globals": {
+    "ts-jest": {
+      "isolatedModules": true
+    }
+  }
+}

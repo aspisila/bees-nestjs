@@ -415,9 +415,7 @@ export class RabbitMQService
           this.consumeQueue(
             channel.options,
             (message, cha, que) =>
-              new Promise((_resolve, _reject) =>
-                throwRabbitException(message, cha, que),
-              ),
+              new Promise(() => throwRabbitException(message, cha, que)),
           );
       }
     }

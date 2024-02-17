@@ -59,7 +59,7 @@ export class BeeService implements OnApplicationBootstrap {
   }
 
   async getBees() {
-    return this.beeModel.find().exec();
+    return this.beeModel.find();
   }
 
   private disconnectAfter(beeName: string, interval: number): any {
