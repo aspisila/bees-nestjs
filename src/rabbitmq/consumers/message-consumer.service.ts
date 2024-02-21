@@ -40,7 +40,8 @@ export class MessageConsumerService {
           id: content._id,
           sender: content.sender,
           receive: content.receive,
-          status: content.status,
+          content: content.content,
+          status: 'sent',
           createdAt: content.createdAt,
         },
       };

@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Sse, MessageEvent } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Sse,
+  MessageEvent,
+  Query,
+} from '@nestjs/common';
 import { BeeService } from './bee.service';
 import { BeeRequestDto } from './dto/bee.request.dto';
 import { Observable } from 'rxjs';
@@ -14,7 +22,7 @@ export class BeeController {
   }
 
   @Get('/')
-  async getBees() {
-    return this.beeService.getBees();
+  async getBees(@Query('page') page: number, @Query('limit') limit: number) {
+    return this.beeService.getBees(page, limit);
   }
 }

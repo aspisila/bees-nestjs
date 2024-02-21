@@ -58,8 +58,8 @@ export class BeeService implements OnApplicationBootstrap {
     return this.cacheService.getSession(beeName);
   }
 
-  async getBees() {
-    return this.beeModel.find();
+  async getBees(page = 0, limit = 25) {
+    return this.beeModel.find().sort('name').limit(limit).skip(page);
   }
 
   private disconnectAfter(beeName: string, interval: number): any {
