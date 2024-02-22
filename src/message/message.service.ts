@@ -14,6 +14,14 @@ export class MessageService {
     @InjectModel(Message.name) private messageModel: Model<Message>,
   ) {}
 
+  /**
+   * Send a message from "sender" to "receive"
+   * Verify if all condition do send is ok
+   * Add message on rabbitMq queue
+   * and return the original message to http response
+   * @param body payload to send a message
+   * @returns Mongo's message document
+   */
   async sendMessage(body: SendMessageDto) {
     const sender = await this.checkBee(body.sender, 'sender');
     const receive = await this.checkBee(body.receive, 'receive');
@@ -30,6 +38,12 @@ export class MessageService {
     return message;
   }
 
+  /**
+   * Verify and return the bee from mongoDb
+   * @param beeName unique bee name
+   * @param type the type of the bee in message way: sender or receive
+   * @returns the bee's mongo document
+   */
   async checkBee(beeName: string, type: string) {
     const checkBee = await this.beeModel.findOne({
       name: beeName.toLowerCase(),

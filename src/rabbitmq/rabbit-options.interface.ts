@@ -1,13 +1,11 @@
 import { ChannelWrapper } from 'amqp-connection-manager';
 import { ConfirmChannel, ConsumeMessage } from 'amqplib';
 
-export interface IRabbitHandler {
-  (
-    message: ConsumeMessage,
-    channel: ConfirmChannel,
-    queue: string,
-  ): Promise<void>;
-}
+export type IRabbitHandler = (
+  message: ConsumeMessage,
+  channel: ConfirmChannel,
+  queue: string,
+) => Promise<void>;
 
 export type RabbitMQExchangeTypes = 'direct' | 'topic' | 'fanout' | 'headers';
 export type RabbitMQChannelOptions = {

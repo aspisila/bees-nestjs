@@ -18,7 +18,7 @@ export class BeeController {
   @Post('/')
   @Sse('/')
   async addBee(@Body() body: BeeRequestDto): Promise<Observable<MessageEvent>> {
-    return await this.beeService.addBee(body);
+    return this.beeService.addBee(body);
   }
 
   @Get('/')
